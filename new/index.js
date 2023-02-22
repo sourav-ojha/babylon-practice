@@ -1,3 +1,6 @@
+import { createScene1 } from "./scene/scene1.js";
+import { createScene2 } from "./scene/scene2.js";
+
 const canvas = document.getElementById("renderCanvas"); // Get the canvas element
 const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 
