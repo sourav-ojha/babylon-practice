@@ -1,4 +1,4 @@
-export const customControls = function (scene, camera) {
+export const customControls = function (scene, canvas, camera) {
   /* New Input Management for Camera
     __________________________________*/
 
@@ -69,9 +69,9 @@ export const customControls = function (scene, camera) {
     if (this._onKeyDown) {
       element.removeEventListener("keydown", this._onKeyDown);
       element.removeEventListener("keyup", this._onKeyUp);
-      BABYLON.Tools.UnregisterTopRootEvents(canvas, [
-        { name: "blur", handler: this._onLostFocus },
-      ]);
+      // BABYLON.Tools.UnregisterTopRootEvents(canvas, [
+      //   { name: "blur", handler: this._onLostFocus },
+      // ]);
       this._keys = [];
       this._onKeyDown = null;
       this._onKeyUp = null;
@@ -370,4 +370,30 @@ export const customControls = function (scene, camera) {
       camera.cameraDirection.addInPlace(camera._transformedDirection);
     }
   });
+
+  // check for device type
+  const isMobile = () => {
+    console.log("mobile device detected");
+    return (
+      typeof window.orientation !== "undefined" ||
+      navigator.userAgent.indexOf("IEMobile") !== -1
+    );
+  };
+
+  if (isMobile()) {
+    // remove mouse input and touch input
+
+    console.log(camera.inputs);
+    camera.inputs.removeByType("FreeCameraSearchInput");
+    camera.inputs.removeByType("FreeCameraKeyboardWalkInput");
+    camera.inputs.removeByType("FreeCameraTouchInput");
+    console.log(camera.inputs);
+    console.log("controls removed");
+  }
 };
+
+// FreeCameraKeyboardMoveInput
+// FreeCameraMouseInput
+
+// FreeCameraKeyboardWalkInput - FreeCameraKeyboardWalkInput - keyboard
+// FreeCameraSearchInput - FreeCameraSearchInput - MouseSearchCamera

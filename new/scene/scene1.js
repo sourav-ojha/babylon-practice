@@ -149,7 +149,7 @@ export const createScene1 = function (canvas, engine) {
     ellipse[i].rotation.y = (5 * Math.PI) / 16 + (i * Math.PI) / 16;
   }
 
-  customControls(scene, camera);
+  customControls(scene, canvas, camera);
 
   return scene;
 };
